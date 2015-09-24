@@ -28,15 +28,22 @@ Sinister is a static blog site generator with Go lang
     hello, world
 ```
 
+* Preview your site in local
+
+```
+    ./sinister --preview
+```
+
 * Build your site
 
 ```
-    ./sinister
+    ./sinister --build
 ```
 
 ## Advanced Features
 
-TODO
+* Theme
+* Plugin
 
 ## License
 
