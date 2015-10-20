@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Sinister is a static blog site generator with Go lang
+Sinister is a static site generator with Go lang
 
 ## Installation
 
@@ -28,16 +28,16 @@ Sinister is a static blog site generator with Go lang
     hello, world
 ```
 
-* Preview your site in local
+* Preview your site in live mode
 
 ```
-    ./sinister --preview
+    ./sinister -live
 ```
 
 * Build your site
 
 ```
-    ./sinister --build
+    ./sinister -build
 ```
 
 ## Advanced Features
