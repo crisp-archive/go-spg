@@ -34,7 +34,7 @@ func main() {
 }
 
 func version() {
-    fmt.Println("Sinister %d, a markdown-based static site generator.", VERSION)
+    fmt.Printf("SPG %s, single page generator.\n", VERSION)
     fmt.Println("Copyright (c) David Zhang, 2015")
 }
 
@@ -43,11 +43,11 @@ func help() {
 }
 
 func usage() {
-    fmt.Println("Usage")
+    fmt.Println("SPG Usage:")
     fmt.Println("\t-help")
     fmt.Println("\t-version")
-    fmt.Println("\t-live")
-    fmt.Println("\t-generate")
+    fmt.Println("\t-output")
+    fmt.Println("\t-var-{name}={value}")
 }
 
 func live(srcPathPtr *string) {

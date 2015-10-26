@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Sinister is a static site generator with Go lang
+SPG(single page generator) is a single static page generator with Go lang
 
 ## Installation
 
@@ -12,38 +12,9 @@ Sinister is a static site generator with Go lang
 
 ## Getting Started
 
-* Create __manifest.json__
-
 ```
+   ./spg hello-world.md -output=hello.html -var-title="Hello, World" -var-footer="Thanks"
 ```
-
-* Create __blog.json__
-
-```
-```
-
-* Create __your-blog.md__
-
-```
-    hello, world
-```
-
-* Preview your site in live mode
-
-```
-    ./sinister -live
-```
-
-* Build your site
-
-```
-    ./sinister -build
-```
-
-## Advanced Features
-
-* Theme
-* Plugin
 
 ## License
 
