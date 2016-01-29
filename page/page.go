@@ -1,10 +1,8 @@
 package page
 
 import (
-    //"static"
-    //"mdx"
-    "../variables"
-    "./static"
+    "github.com/crispgm/go-spg/variables"
+    "github.com/crispgm/go-spg/page/static"
 )
 
 const (
