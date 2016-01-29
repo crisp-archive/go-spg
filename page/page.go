@@ -2,20 +2,8 @@ package page
 
 import (
     "github.com/crispgm/go-spg/variables"
-    "github.com/crispgm/go-spg/page/static"
+    "github.com/crispgm/go-spg/generator"
 )
-
-const (
-    G_ERROR  = iota
-    G_STATIC = iota
-    G_MDT    = iota // markdown with simple template
-)
-
-type Generator interface {
-    SetTemplate(content string) bool
-    Render(v variables.Variables) bool
-    GetContent() string
-}
 
 type Page struct {
     src string
@@ -35,7 +23,7 @@ func New(src string, dst string, vrb variables.Variables, gtype int) (bool, Page
     page.gtype = gtype
     switch page.gtype {
     case G_STATIC:
-        page.generator = static.NewStatic{"", ""}
+        page.generator = static.NewStatic("", "")
         return true, page
     case G_MDT:
         return true, page
