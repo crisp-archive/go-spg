@@ -46,8 +46,10 @@ func usage() {
     fmt.Println("SPG Usage:")
     fmt.Println("\t-help")
     fmt.Println("\t-version")
-    fmt.Println("\t-output")
-    fmt.Println("\t-var-{name}={value}")
+    fmt.Println("\t-compile")
+    fmt.Println("\t-live")
+    fmt.Println("\t-addvar={json variables}")
+    fmt.Println("\t-loadvar={json file}")
 }
 
 func live(srcPathPtr *string) {
