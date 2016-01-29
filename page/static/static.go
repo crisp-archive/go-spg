@@ -2,7 +2,6 @@ package static
 
 import (
     "github.com/crispgm/go-spg/variables"
-    "github.com/crispgm/go-spg/page"
 )
 
 type StaticGenerator struct {
