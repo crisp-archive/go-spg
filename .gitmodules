@@ -1,3 +1,0 @@
-[submodule "pkg/markdown"]
-	path = pkg/markdown
-	url = https://github.com/knieriem/markdown

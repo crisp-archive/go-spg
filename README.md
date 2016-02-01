@@ -13,7 +13,7 @@ SPG(single page generator) is a single static page generator with Go lang
 ## Getting Started
 
 ```
-   ./spg hello-world.md -output=hello.html -var-title="Hello, World" -var-footer="Thanks"
+   ./spg hello-world.md
 ```
 
 ## License
