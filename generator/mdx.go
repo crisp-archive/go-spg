@@ -1,6 +1,8 @@
 package generator
 
 import (
+    "fmt"
+
     "github.com/russross/blackfriday"
     "github.com/crispgm/go-spg/variables"
 )
@@ -14,16 +16,18 @@ func NewMdx() Generator {
     return &MdxGenerator{[]byte(``), []byte(``)}
 }
 
-func (sg *MdxGenerator) SetTemplate(tpl []byte) bool {
+func (sg *MdxGenerator) SetTemplate(tpl []byte) error {
     sg.template = tpl
-    return true
+    return nil
 }
 
-func (sg *MdxGenerator) Render(v variables.Variables) bool {
+func (sg *MdxGenerator) Render(v variables.Variables) error {
     // parser include
     // do include
+    fmt.Println("debug here", sg.template)
     sg.content = blackfriday.MarkdownBasic(sg.template)
-    return true
+    fmt.Println(sg.content)
+    return nil
 }
 
 func (sg *MdxGenerator) GetContent() []byte {

@@ -13,14 +13,14 @@ func NewStatic() Generator {
     return &StaticGenerator{[]byte(``), []byte(``)}
 }
 
-func (sg *StaticGenerator) SetTemplate(tpl []byte) bool {
+func (sg *StaticGenerator) SetTemplate(tpl []byte) error {
     sg.template = tpl
-    return true
+    return nil
 }
 
-func (sg *StaticGenerator) Render(v variables.Variables) bool {
+func (sg *StaticGenerator) Render(v variables.Variables) error {
     sg.content = sg.template
-    return true
+    return nil
 }
 
 func (sg *StaticGenerator) GetContent() []byte {

@@ -14,14 +14,14 @@ func NewMarkdown() Generator {
     return &MarkdownGenerator{[]byte(``), []byte(``)}
 }
 
-func (sg *MarkdownGenerator) SetTemplate(tpl []byte) bool {
+func (sg *MarkdownGenerator) SetTemplate(tpl []byte) error {
     sg.template = tpl
-    return true
+    return nil
 }
 
-func (sg *MarkdownGenerator) Render(v variables.Variables) bool {
+func (sg *MarkdownGenerator) Render(v variables.Variables) error {
     sg.content = blackfriday.MarkdownBasic(sg.template)
-    return true
+    return nil
 }
 
 func (sg *MarkdownGenerator) GetContent() []byte {

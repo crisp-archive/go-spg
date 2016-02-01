@@ -12,9 +12,11 @@ func TestNewWithMdx(t *testing.T){
     var jsonBlob = []byte(`{"Value": "Monotremata"}`)
     vrb := variables.New(jsonBlob)
 
-    page := Page{"", "", []byte(``), vrb, generator.G_MDX, nil}
-    if page.gtype != generator.G_MDX {
+    err, page := New("", "", vrb, generator.G_MDX)
+    if err != nil && page.gtype != generator.G_MDX {
         t.Error("Test NewMdx failed")
     }
-    fmt.Println(page.generate())
+    page.LoadTemplate()
+    err, cnt := page.Generate()
+    fmt.Println(string(cnt))
 }

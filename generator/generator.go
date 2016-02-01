@@ -14,8 +14,8 @@ const (
 )
 
 type Generator interface {
-    SetTemplate(content []byte) bool
-    Render(v variables.Variables) bool
+    SetTemplate(content []byte) error
+    Render(v variables.Variables) error
     GetContent() []byte
 }
 
