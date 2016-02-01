@@ -24,9 +24,9 @@ func (sg *MdxGenerator) SetTemplate(tpl []byte) error {
 func (sg *MdxGenerator) Render(v variables.Variables) error {
     // parser include
     // do include
-    fmt.Println("debug here", sg.template)
+    fmt.Println("debug here", string(sg.template))
     sg.content = blackfriday.MarkdownBasic(sg.template)
-    fmt.Println(sg.content)
+    fmt.Println(string(sg.content))
     return nil
 }
 
