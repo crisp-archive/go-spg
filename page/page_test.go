@@ -17,5 +17,8 @@ func TestNewWithMdx(t *testing.T){
     }
     page.LoadTemplate()
     err, _ = page.Generate()
+    if err != nil {
+        t.Error("Test NewMdx Generate failed")
+    }
     page.Output()
 }
