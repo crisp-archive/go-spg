@@ -35,16 +35,15 @@ func New(src string, dst string, vrb variables.Variables, gtype string) (error, 
     p.dst = dst
 
     switch p.gtype {
-    case generator.G_STATIC:
-    case generator.G_MARKDOWN:
-    
+    // case generator.G_STATIC:
+    // case generator.G_MARKDOWN:
     case generator.G_MDX:
-        generator.Register(p.gtype, generator.NewStatic)
-        var err error
-        err, p.engine = generator.NewGenerator(p.gtype)
+        generator.Register(p.gtype, generator.NewMdx)
+        err, engine := generator.NewGenerator(p.gtype)
         if err != nil {
             return err, p
         }
+        p.engine = engine
         return nil, p
     case generator.G_ERROR:
         return NewError("Invalid Generator Type"), p
@@ -65,7 +64,8 @@ func (page *Page) LoadTemplate() {
 }
 
 func (page *Page) Generate() (error, []byte) {
-    if !page.engine.Render(page.variables) {
+    err := page.engine.Render(page.variables)
+    if err != nil {
         return NewError("Render Failed"), []byte(``)
     }
     return nil, page.engine.GetContent()
