@@ -5,15 +5,15 @@ import (
 )
 
 type StaticGenerator struct {
-    template string
-    content string
+    template []byte
+    content []byte
 }
 
 func NewStatic() Generator {
-    return &StaticGenerator{"", ""}
+    return &StaticGenerator{[]byte(``), []byte(``)}
 }
 
-func (sg *StaticGenerator) SetTemplate(tpl string) bool {
+func (sg *StaticGenerator) SetTemplate(tpl []byte) bool {
     sg.template = tpl
     return true
 }
@@ -23,6 +23,6 @@ func (sg *StaticGenerator) Render(v variables.Variables) bool {
     return true
 }
 
-func (sg *StaticGenerator) GetContent() string {
+func (sg *StaticGenerator) GetContent() []byte {
     return sg.content
 }

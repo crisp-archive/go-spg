@@ -1,23 +1,23 @@
 package page
 
 import (
-    "github.com/crispgm/go-spg/variables"
     "github.com/crispgm/go-spg/generator"
+    "github.com/crispgm/go-spg/variables"
 )
 
 type Page struct {
     src string
     dst string
 
-    content string
+    content []byte
     variables variables.Variables
 
-    gtype int
+    gtype string
     generator Generator
 }
 
-func New(src string, dst string, vrb variables.Variables, gtype int) (bool, Page) {
-    page := Page{"", "", "", vrb, G_STATIC, nil}
+func New(src string, dst string, vrb variables.Variables, gtype string) (bool, Page) {
+    page := Page{"", "", []byte(``), vrb, G_STATIC, nil}
     page.src = src
     page.dst = dst
     page.gtype = gtype
@@ -37,9 +37,10 @@ func New(src string, dst string, vrb variables.Variables, gtype int) (bool, Page
 }
 
 func (page *Page) setGenerator(g Generator) {
+    page.generator = g
 }
 
-func (page *Page) generate() (bool, string) {
+func (page *Page) generate() (bool, []byte) {
     page.generator.SetTemplate(page.content)
     if !page.generator.Render(page.variables) {
         return false, ""

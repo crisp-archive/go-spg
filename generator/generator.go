@@ -7,15 +7,16 @@ import (
 )
 
 const (
-    G_ERROR  = "error"
-    G_STATIC = "static"
-    G_MDT    = "mdx" // markdown with simple template
+    G_ERROR    = "error"
+    G_STATIC   = "static"
+    G_MARKDOWN = "markdown"
+    G_MDT      = "mdx" // markdown with simple template
 )
 
 type Generator interface {
-    SetTemplate(content string) bool
+    SetTemplate(content []byte) bool
     Render(v variables.Variables) bool
-    GetContent() string
+    GetContent() []byte
 }
 
 type Instance func() Generator
