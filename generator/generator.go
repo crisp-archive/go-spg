@@ -10,7 +10,7 @@ const (
     G_ERROR    = "error"
     G_STATIC   = "static"
     G_MARKDOWN = "markdown"
-    G_MDT      = "mdx" // markdown with simple template
+    G_MDX      = "mdx" // markdown with simple template
 )
 
 type Generator interface {

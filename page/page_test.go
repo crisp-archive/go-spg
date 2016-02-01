@@ -4,6 +4,7 @@ import (
     "fmt"
     "testing"
     
+    "github.com/crispgm/go-spg/generator"
     "github.com/crispgm/go-spg/variables"
 )
 
@@ -11,8 +12,8 @@ func TestNewWithStatic(t *testing.T){
     var jsonBlob = []byte(`{"Value": "Monotremata"}`)
     vrb := variables.New(jsonBlob)
 
-    page := Page{"", "", "", vrb, G_STATIC, nil}
-    if page.gtype != G_STATIC {
+    page := Page{"", "", []byte(``), vrb, generator.G_STATIC, nil}
+    if page.gtype != generator.G_STATIC {
         t.Error("Test GetIntVar failed")
     }
     fmt.Println(page.generate())
