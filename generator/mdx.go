@@ -1,8 +1,6 @@
 package generator
 
 import (
-    "fmt"
-
     "github.com/russross/blackfriday"
     "github.com/crispgm/go-spg/variables"
 )

@@ -1,6 +1,8 @@
 package page
 
 import (
+    "io/ioutil"
+
     "github.com/crispgm/go-spg/generator"
     "github.com/crispgm/go-spg/variables"
 )
@@ -58,9 +60,16 @@ func (page *Page) SetEngine(g generator.Generator) {
     page.engine = g
 }
 
-func (page *Page) LoadTemplate() {
-    page.template = []byte(`# hello`)
+func (page *Page) LoadTemplate() error {
+    dat, err := ioutil.ReadFile(page.src)
+    if err != nil {
+        panic(err)
+    }
+
+    page.template = dat
+
     page.engine.SetTemplate(page.template)
+    return nil
 }
 
 func (page *Page) Generate() (error, []byte) {
@@ -68,5 +77,14 @@ func (page *Page) Generate() (error, []byte) {
     if err != nil {
         return NewError("Render Failed"), []byte(``)
     }
-    return nil, page.engine.GetContent()
+    page.content = page.engine.GetContent()
+    return nil, page.content
+}
+
+func (page *Page) Output() error {
+    err := ioutil.WriteFile(page.dst, page.content, 0644)
+    if err != nil {
+        panic(err)
+    }
+    return nil
 }
