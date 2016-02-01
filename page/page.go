@@ -47,8 +47,11 @@ func (page *Page) setEngine(g generator.Generator) {
     page.engine = g
 }
 
+func (page *Page) loadRaw() {
+}
+
 func (page *Page) generate() (bool, []byte) {
-    page.engine.SetTemplate(page.content)
+    page.engine.SetTemplate([]byte(`# hello`))
     if !page.engine.Render(page.variables) {
         return false, []byte(``)
     }
