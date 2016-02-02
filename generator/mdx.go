@@ -62,10 +62,9 @@ func (sg *MdxGenerator) SetTemplate(tpl []byte) error {
 
 func (sg *MdxGenerator) Render(v variables.Variables) error {
     // parse template
-    tpl := string(sg.template)
-    sg.parsedTemplate = sg.Tpl_Parse(tpl)
+    mdTpl = blackfriday.MarkdownBasic(sg.template)
+    sg.content = sg.Tpl_Parse(string(mdTpl))
     // generate markdown
-    sg.content = blackfriday.MarkdownBasic(sg.parsedTemplate)
     return nil
 }
 

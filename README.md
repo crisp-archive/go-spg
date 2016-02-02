@@ -1,4 +1,4 @@
-# sinister
+# Go-spg
 
 ## Introduction
 
