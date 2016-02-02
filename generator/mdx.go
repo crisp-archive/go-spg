@@ -5,7 +5,7 @@ import (
     "io/ioutil"
     "strings"
 
-    "github.com/russross/blackfriday"
+    "github.com/golang-commonmark/markdown"
     "github.com/crispgm/go-spg/variables"
 )
 
@@ -62,9 +62,11 @@ func (sg *MdxGenerator) SetTemplate(tpl []byte) error {
 
 func (sg *MdxGenerator) Render(v variables.Variables) error {
     // parse template
-    mdTpl = blackfriday.MarkdownBasic(sg.template)
-    sg.content = sg.Tpl_Parse(string(mdTpl))
+    tpl := string(sg.template)
+    sg.parsedTemplate = sg.Tpl_Parse(tpl)
     // generate markdown
+    md := markdown.New(markdown.HTML(true), markdown.Tables(true), markdown.Linkify(false))
+    sg.content = []byte(md.RenderToString(sg.parsedTemplate))
     return nil
 }
 
