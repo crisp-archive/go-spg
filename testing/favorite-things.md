@@ -1,3 +1,5 @@
+{{include ./testing/head.html}}
+
 This page is inspired by the Things page of [Kenneth Reitz](http://www.kennethreitz.org/things/).
 
 ### What I am interested in
@@ -35,3 +37,4 @@ My photos are posted on [Tumblr](http://crispgm.tumblr.com) and [Instagram](http
 
 See details in [我喜欢的应用](http://crispgm.com/page/my-favorite-app.html)。
 
+{{include "./testing/head.html"}}

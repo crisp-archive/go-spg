@@ -52,7 +52,7 @@ func TestMdxGenerator(t *testing.T){
     if err != nil {
         t.Error("Test New Mdx Generator Failed")
     }
-    g.SetTemplate([]byte(`### hello, world`))
+    g.SetTemplate([]byte(`{{include ../testing/head.html}}### hello, world{{include ../testing/foot.html}}`))
     g.Render(vrb)
     cnt := g.GetContent()
     fmt.Println(string(cnt))
