@@ -9,6 +9,8 @@ type Page struct {
     src string
     dst string
     input_file string
+    head_file string
+    foot_file string
     template []byte
     content []byte
     html []byte
