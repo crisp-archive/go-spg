@@ -2,21 +2,16 @@ package page
 
 import (
     "io/ioutil"
-
-    "github.com/crispgm/go-spg/generator"
-    "github.com/crispgm/go-spg/variables"
+    "github.com/russross/blackfriday"
 )
 
 type Page struct {
     src string
     dst string
-
+    input_file string
     template []byte
     content []byte
-    variables variables.Variables
-
-    gtype string
-    engine generator.Generator
+    html []byte
 }
 
 type PageError struct {
@@ -31,58 +26,43 @@ func NewError(text string) error {
     return &PageError{text}
 }
 
-func New(src string, dst string, vrb variables.Variables, gtype string) (error, Page) {
-    p := Page{"", "", []byte(``), []byte(``), vrb, gtype, nil}
+func New(src string, dst string, input_file string, tpl []byte, cnt []byte, h []byte) (error, Page) {
+    p := Page{"", "", "", []byte(``), []byte(``), []byte(``)}
+
     p.src = src
     p.dst = dst
-
-    switch p.gtype {
-    // case generator.G_STATIC:
-    // case generator.G_MARKDOWN:
-    case generator.G_MDX:
-        generator.Register(p.gtype, generator.NewMdx)
-        err, engine := generator.NewGenerator(p.gtype)
-        if err != nil {
-            return err, p
-        }
-        p.engine = engine
-        return nil, p
-    case generator.G_ERROR:
-        return NewError("Invalid Generator Type"), p
-    default:
-        return NewError("Invalid Generator Type"), p
-    }
+    p.input_file = input_file
+    p.template = tpl
+    p.content = cnt
+    p.html = h
 
     return nil, p
 }
 
-func (page *Page) SetEngine(g generator.Generator) {
-    page.engine = g
-}
-
 func (page *Page) LoadTemplate() error {
-    dat, err := ioutil.ReadFile(page.src)
+    dat, err := ioutil.ReadFile(page.src + page.input_file)
     if err != nil {
         panic(err)
     }
 
     page.template = dat
 
-    page.engine.SetTemplate(page.template)
     return nil
 }
 
-func (page *Page) Generate() (error, []byte) {
-    err := page.engine.Render(page.variables)
-    if err != nil {
-        return NewError("Render Failed"), []byte(``)
-    }
-    page.content = page.engine.GetContent()
-    return nil, page.content
+func (page *Page) Compile() error {
+    page.content = blackfriday.MarkdownBasic(page.template)
+    return nil
+}
+
+func (page *Page) Build() error {
+    //page.html = page.head + page.content + page.foot
+    page.html = page.content
+    return nil
 }
 
 func (page *Page) Output() error {
-    err := ioutil.WriteFile(page.dst, page.content, 0644)
+    err := ioutil.WriteFile(page.dst, page.html, 0644)
     if err != nil {
         panic(err)
     }
