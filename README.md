@@ -1,5 +1,7 @@
 # Go-spg
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 ## Introduction
 
 SPG(single page generator) is a single static page generator with Go lang, with the power of Markdown and Go templates.
